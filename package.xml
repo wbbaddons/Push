@@ -6,7 +6,7 @@
 		<packagedescription language="de"><![CDATA[Push stellt ein einfach zu verwendendes Push-Server-API zur Verfügung.]]></packagedescription>
 		<isapplication>0</isapplication>
 		<version>1.0.0</version>
-		<date>2014-06-10</date>
+		<date>2014-09-19</date>
 		<license><![CDATA[BSD 3-Clause License <http://opensource.org/licenses/BSD-3-Clause>]]></license>
 	</packageinformation>
 	
