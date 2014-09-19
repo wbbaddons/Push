@@ -24,7 +24,7 @@ be.bastelstu.wcf.push.onMessage('be.bastelstu.wcf.push.hello', function() {
 
 ### Writing your own push backend
 
-Have a look at [nodePush](http://github.com/WoltLab/WCF)!
+Have a look at [nodePush](http://github.com/wbbaddons/nodePush)!
 
 License
 -------
