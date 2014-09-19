@@ -50,8 +50,8 @@ class PushHandler extends \wcf\system\SingletonFactory {
 	 * If `$userIDs` is an empty array the message will be sent to every connected client. 
 	 * Otherwise the message will only be sent to clients with the given userID.
 	 * 
-	* ATTENTION: Do NOT (!) send any security related information via sendMessage.
-	* Not every push service can validate whether the userID given was forged by a malicious client!
+	 * ATTENTION: Do NOT (!) send any security related information via sendMessage.
+	 * Not every push service can validate whether the userID given was forged by a malicious client!
 	 * 
 	 * @param	string			$message
 	 * @param	array<integer>	$userIDs
