@@ -6,7 +6,7 @@ everything that has to be done in order to connect to the push service and provi
 
 	### Copyright Information
 	# @author	Tim Düsterhus
-	# @copyright	2012-2014 Tim Düsterhus
+	# @copyright	2012-2015 Tim Düsterhus
 	# @license	BSD 3-Clause License <http://opensource.org/licenses/BSD-3-Clause>
 	# @package	be.bastelstu.wcf.push
 	###
@@ -29,7 +29,7 @@ enabling EMCAScript 5 strict mode and overwriting console to prepend the name of
 Continue with defining the needed variables. All variables are local to our closure and will be
 exposed by a function if necessary.
 
-		initialized = false
+		initialized = no
 		service = null
 		connected = no
 		events =
@@ -39,7 +39,7 @@ Initializes Push with the given service
 
 		init = (_service) ->
 			return if initialized
-			initialized = true
+			initialized = yes
 			service = _service
 			
 			service.onConnect -> connected = yes

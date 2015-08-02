@@ -50,20 +50,25 @@ class PushHandler extends \wcf\system\SingletonFactory {
 	 * If `$userIDs` is an empty array the message will be sent to every connected client. 
 	 * Otherwise the message will only be sent to clients with the given userID.
 	 * 
+	 * `$payload` will be made available in the JavaScript code as a parameter. Note that
+	 * a specific push backend may choose to ignore the payload, if it cannot transmit it.
+	 * Make sure that you properly handle this in your code.
+	 * 
 	 * ATTENTION: Do NOT (!) send any security related information via sendMessage.
 	 * Not every push service can validate whether the userID given was forged by a malicious client!
 	 * 
-	 * @param	string			$message
+	 * @param	string		$message
 	 * @param	array<integer>	$userIDs
+	 * @param	array		$payload
 	 * @return	boolean
 	 */
-	public function sendMessage($message, $userIDs = array()) {
+	public function sendMessage($message, array $userIDs = array(), array $payload = array()) {
 		if (!$this->isEnabled()) return false;
 		if (!\wcf\data\package\Package::isValidPackageName($message)) return false;
 		$userIDs = array_unique(\wcf\util\ArrayUtil::toIntegerArray($userIDs));
 		
 		$backend = PUSH_BACKEND;
-		return (boolean) $backend::getInstance()->sendMessage($message, $userIDs);
+		return (boolean) $backend::getInstance()->sendMessage($message, $userIDs, $payload);
 	}
 	
 	/**
@@ -80,14 +85,15 @@ class PushHandler extends \wcf\system\SingletonFactory {
 	 * 
 	 * @see	\wcf\system\push\PushHandler::sendMessage()
 	 */
-	public function sendDeferredMessage($message, $userIDs = array()) {
+	public function sendDeferredMessage($message, array $userIDs = array(), array $payload = array()) {
 		if (!$this->isEnabled()) return false;
 		if (!\wcf\data\package\Package::isValidPackageName($message)) return false;
 		$userIDs = array_unique(\wcf\util\ArrayUtil::toIntegerArray($userIDs));
 		
 		$this->deferred[] = array(
 			'message' => $message,
-			'userIDs' => $userIDs
+			'userIDs' => $userIDs,
+			'payload' => $payload
 		);
 		
 		return true;
@@ -98,7 +104,7 @@ class PushHandler extends \wcf\system\SingletonFactory {
 	 */
 	public function __destruct() {
 		foreach ($this->deferred as $data) {
-			$this->sendMessage($data['message'], $data['userIDs']);
+			$this->sendMessage($data['message'], $data['userIDs'], $data['payload']);
 		}
 	}
 }
