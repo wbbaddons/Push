@@ -5,8 +5,8 @@
 		<packagedescription><![CDATA[Push provides an easy to use push server API.]]></packagedescription>
 		<packagedescription language="de"><![CDATA[Push stellt ein einfach zu verwendendes Push-Server-API zur Verfügung.]]></packagedescription>
 		<isapplication>0</isapplication>
-		<version>1.1.0</version>
-		<date>2015-08-02</date>
+		<version>1.1.1</version>
+		<date>2015-08-08</date>
 		<license><![CDATA[BSD 3-Clause License <http://opensource.org/licenses/BSD-3-Clause>]]></license>
 	</packageinformation>
 	
@@ -18,6 +18,10 @@
 	<requiredpackages>
 		<requiredpackage minversion="2.0.0 Alpha 1">com.woltlab.wcf</requiredpackage>
 	</requiredpackages>
+	
+	<excludedpackages>
+		<excludedpackage version="2.2.0 Alpha 1">com.woltlab.wcf</excludedpackage>
+	</excludedpackages>
 	
 	<instructions type="install">
 		<instruction type="file">file.tar</instruction>
