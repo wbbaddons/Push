@@ -34,6 +34,10 @@ exposed by a function if necessary.
 		connected = no
 		events =
 			message: { }
+		queues =
+			connect: [ ]
+			disconnect: [ ]
+			message: [ ]
 
 Initializes Push with the given service
 
@@ -44,6 +48,10 @@ Initializes Push with the given service
 			
 			service.onConnect -> connected = yes
 			service.onDisconnect -> connected = no
+
+			service.onConnect callback for callback in queues.connect
+			service.onDisconnect callback for callback in queues.disconnect
+			service.onMessage message, callback for { message, callback } in queues.message
 			
 			for intervalLength in [ 15, 30, 60, 90, 120 ]
 				do (intervalLength) ->
@@ -67,7 +75,7 @@ Return `true` on success and `false` otherwise.
 			if initialized
 				return service.onConnect callback
 			else
-				console.warn "Someone tried to bind an onConnect callback before initialization of a service"
+				queues.connect.push callback
 				false
 
 Add a new `callback` that will be called when the connection to the push service is lost. Return `true`
@@ -79,7 +87,7 @@ on success and `false` otherwise.
 			if initialized
 				service.onDisconnect callback
 			else
-				console.warn "Someone tried to bind an onDisonnect callback before initialization of a service"
+				queues.disconnect.push callback
 				false
 
 Add a new `callback` that will be called when the specified `message` is received. Return `true`
@@ -97,7 +105,7 @@ on success and `false` otherwise.
 				else
 					service.onMessage message, callback
 			else
-				console.warn "Someone tried to bind an onMessage(#{message}) callback before initialization of a service"
+				queues.message.push { message: message, callback: callback }
 				false
 
 And finally export the public methods and variables.
