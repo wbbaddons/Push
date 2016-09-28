@@ -5,7 +5,21 @@
 			<environment>user</environment>
 			<templatename>headInclude</templatename>
 			<eventname>javascriptInclude</eventname>
-			<templatecode><![CDATA[<script data-relocate="true" src="{$__wcf->getPath()}js/be.bastelstu.wcf.push{if !ENABLE_DEBUG_MODE}.min{/if}.js"></script>]]></templatecode>
+			<templatecode><![CDATA[<script>;(function () {
+	var noop = function () { return false }
+
+	if (!window.be) window.be = { }
+	if (!window.be.bastelstu) window.be.bastelstu = { }
+	if (!window.be.bastelstu.wcf) window.be.bastelstu.wcf = { }
+	if (!window.be.bastelstu.wcf.push) {
+		var legacy = { init: noop
+		             , onConnect: noop
+		             , onDisconnect: noop
+		             , onMessage: noop
+		             }
+		window.be.bastelstu.wcf.push = legacy
+	}
+})()</script>]]></templatecode>
 			<nice>-100</nice>
 		</templatelistener>
 	</import>
