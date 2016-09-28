@@ -17,9 +17,22 @@ $pushHandler->sendMessage('be.bastelstu.wcf.push.hello', array());
 
 ### On the client
 ```javascript
-be.bastelstu.wcf.push.onMessage('be.bastelstu.wcf.push.hello', function() {
-	alert('World!');
-});
+require([ 'Bastelstu.be/Push' ], function (Push) {
+	function init() {
+		switch (Push.getStatus()) {
+			case 'initialized':
+				Push.onMessage('be.bastelstu.wcf.push.hello', function () {
+					alert('World!')
+				})
+				return
+			case 'error':
+				return
+			default:
+				setTimeout(init, 1e3)
+		}
+	}
+	init()
+})
 ```
 
 ### Writing your own push backend
