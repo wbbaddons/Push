@@ -28,24 +28,20 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
  */
 
-define([ ], function () {
+define([ 'Bastelstu.be/core' ], function (core) {
 	"use strict";
 
 	class Push {
-		getStatus() {
-			return 'error'
-		}
-
 		onConnect(callback) {
-			throw new Error('Unsupported')
+			return core.Promise.reject(new Error('Unsupported'))
 		}
 
 		onDisconnect(callback) {
-			throw new Error('Unsupported')
+			return core.Promise.reject(new Error('Unsupported'))
 		}
 
 		onMessage(message, callback) {
-			throw new Error('Unsupported')
+			return core.Promise.reject(new Error('Unsupported'))
 		}
 	}
 

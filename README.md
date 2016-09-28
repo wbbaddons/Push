@@ -18,20 +18,17 @@ $pushHandler->sendMessage('be.bastelstu.wcf.push.hello', array());
 ### On the client
 ```javascript
 require([ 'Bastelstu.be/Push' ], function (Push) {
-	function init() {
-		switch (Push.getStatus()) {
-			case 'initialized':
-				Push.onMessage('be.bastelstu.wcf.push.hello', function () {
-					alert('World!')
-				})
-				return
-			case 'error':
-				return
-			default:
-				setTimeout(init, 1e3)
-		}
-	}
-	init()
+	Push
+	.onConnect(function () { alert('CONNECT') })
+	.catch(function (err) { console.log(err) })
+
+	Push
+	.onDisconnect(function () { alert('DISCONNECT') })
+	.catch(function (err) { console.log(err) })
+
+	Push
+	.onMessage('be.bastelstu.wcf.push.hello', function () { alert('World!') })
+	.catch(function (err) { console.log(err) })
 })
 ```
 
