@@ -32,6 +32,10 @@ define([ ], function () {
 	"use strict";
 
 	class Push {
+		getStatus() {
+			return 'error'
+		}
+
 		onConnect(callback) {
 			throw new Error('Unsupported')
 		}
