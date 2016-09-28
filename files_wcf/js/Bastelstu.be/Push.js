@@ -45,5 +45,5 @@ define([ ], function () {
 		}
 	}
 
-	return Push
+	return new Push()
 });
