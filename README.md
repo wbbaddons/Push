@@ -17,7 +17,7 @@ $pushHandler->sendMessage('be.bastelstu.wcf.push.hello', array());
 
 ### On the client
 ```javascript
-require([ 'Bastelstu.be/Push' ], function (Push) {
+require([ 'Bastelstu.be/_Push' ], function (Push) {
 	Push
 	.onConnect(function () { alert('CONNECT') })
 	.catch(function (err) { console.log(err) })
