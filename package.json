@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "babel-preset-latest": "^6.16.0"
+  }
+}

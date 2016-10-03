@@ -1,2 +1,5 @@
 be.bastelstu.wcf.push.tar
 files_wcf.tar
+
+node_modules
+*.babel

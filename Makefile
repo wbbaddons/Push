@@ -1,15 +1,20 @@
-WCF_FILES = $(shell find files_wcf -type f)
+WCF_FILES = $(shell find files_wcf -type f -not -name '*.babel')
+BABEL = files_wcf/js/Bastelstu.be/_Push.babel
 
 all: be.bastelstu.wcf.push.tar
 
 be.bastelstu.wcf.push.tar: files_wcf.tar *.xml LICENSE
 	tar cvf be.bastelstu.wcf.push.tar --numeric-owner --exclude-vcs -- files_wcf.tar *.xml LICENSE
 
-files_wcf.tar: $(WCF_FILES)
-	tar cvf files_wcf.tar --numeric-owner --exclude-vcs --transform='s,files_wcf/,,' -- $(WCF_FILES)
+files_wcf.tar: $(WCF_FILES) files_wcf/js/Bastelstu.be/_Push.babel
+	tar cvf files_wcf.tar --numeric-owner --exclude-vcs --exclude .babelrc --transform='s,^files_wcf/,,' --transform='s,.babel$$,.js,' -- $+
+
+%.babel: %.js
+	babel $< > $@
 
 clean:
 	-rm -f files_wcf.tar
+	-rm -f $(BABEL)
 
 distclean: clean
 	-rm -f be.bastelstu.wcf.push.tar
