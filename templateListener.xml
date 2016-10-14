@@ -19,7 +19,7 @@
 		             }
 		window.be.bastelstu.wcf.push = legacy
 	}
-})()</script>]]></templatecode>
+})();</script>]]></templatecode>
 			<nice>-100</nice>
 		</templatelistener>
 	</import>
