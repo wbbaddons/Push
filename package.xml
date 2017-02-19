@@ -31,11 +31,11 @@
 
 	<instructions type="update" fromversion="1.1.1">
 		<instruction type="file" application="wcf">files_wcf.tar</instruction>
-		<instruction type="templateListener" />
+		<instruction type="templateListener">templateListener.xml</instruction>
 	</instructions>
 
 	<instructions type="update" fromversion="1.0.0">
 		<instruction type="file" application="wcf">files_wcf.tar</instruction>
-		<instruction type="templateListener" />
+		<instruction type="templateListener">templateListener.xml</instruction>
 	</instructions>
 </package>
