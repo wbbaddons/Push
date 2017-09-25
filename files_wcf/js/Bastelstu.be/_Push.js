@@ -43,6 +43,10 @@ define([ 'Bastelstu.be/core' ], function (core) {
 		onMessage(message, callback) {
 			return core.Promise.reject(new Error('Unsupported'))
 		}
+
+		getFeatureFlags() {
+			return [ ]
+		}
 	}
 
 	return new Push()

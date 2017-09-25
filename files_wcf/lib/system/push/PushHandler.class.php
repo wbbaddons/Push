@@ -20,6 +20,13 @@ class PushHandler extends \wcf\system\SingletonFactory {
 	private $deferred = array();
 	
 	/**
+	 * Channels to join for this page view.
+	 *
+	 * @var	string[]
+	 */
+	private $channels = [ ];
+	
+	/**
 	 * Returns whether a push service is enabled.
 	 * 
 	 * @return	boolean
@@ -44,51 +51,41 @@ class PushHandler extends \wcf\system\SingletonFactory {
 	}
 	
 	/**
+	 * @see	\wcf\system\push\PushHandler::getFeatureFlags()
+	 */
+	public function getFeatureFlags() {
+		$backend = PUSH_BACKEND;
+		if (method_exists($backend, 'getFeatureFlags')) {
+			return $backend::getInstance()->getFeatureFlags();
+		}
+		
+		return [ ];
+	}
+	
+	/**
 	 * Sends a message to the connected clients. Returns `true` on success and `false`
 	 * otherwise.
 	 * 
-	 * If `$userIDs` is an empty array the message will be sent to every connected client. 
-	 * Otherwise the message will only be sent to clients with the given userID.
+	 * $message must be an array containing the following:
+	 * message: string - The message to send.
+	 * payload: ?array - Additional data to send.
+	 * target: ?array - Targets to send to. The message is send to the Union of Targets.
 	 * 
-	 * `$payload` will be made available in the JavaScript code as a parameter. Note that
-	 * a specific push backend may choose to ignore the payload, if it cannot transmit it.
-	 * Make sure that you properly handle this in your code.
-	 * 
-	 * ATTENTION: Do NOT (!) send any security related information via sendMessage.
-	 * Not every push service can validate whether the userID given was forged by a malicious client!
-	 * 
-	 * @param	string		$message
-	 * @param	array<integer>	$userIDs
-	 * @param	array		$payload
+	 * @param	array		$message
 	 * @return	boolean
 	 */
 	public function sendMessage($message, array $userIDs = array(), array $payload = array()) {
 		if (!$this->isEnabled()) return false;
-		if (!\wcf\data\package\Package::isValidPackageName($message)) return false;
-		$userIDs = array_unique(\wcf\util\ArrayUtil::toIntegerArray($userIDs));
 		
 		$backend = PUSH_BACKEND;
 		return (boolean) $backend::getInstance()->sendMessage($message, $userIDs, $payload);
 	}
 	
 	/**
-	 * Registers a deferred message. Returns `true` on any well-formed message and `false`
-	 * otherwise.
-	 * Deferred messages will be sent on shutdown. This can be useful if your handler depends
-	 * on data that may not be written to database yet or to achieve a better performance as the
-	 * page is delivered first.
-	 * 
-	 * ATTENTION: Use this method only if your messages are not critical as you cannot check
-	 * whether your message was delivered successfully.
-	 * ATTENTION: Do NOT (!) send any security related information via sendDeferredMessage.
-	 * Not every push service can validate whether the userID given was forged by a malicious client!
-	 * 
-	 * @see	\wcf\system\push\PushHandler::sendMessage()
+	 * @deprecated
 	 */
 	public function sendDeferredMessage($message, array $userIDs = array(), array $payload = array()) {
 		if (!$this->isEnabled()) return false;
-		if (!\wcf\data\package\Package::isValidPackageName($message)) return false;
-		$userIDs = array_unique(\wcf\util\ArrayUtil::toIntegerArray($userIDs));
 		
 		$this->deferred[] = array(
 			'message' => $message,
@@ -106,5 +103,23 @@ class PushHandler extends \wcf\system\SingletonFactory {
 		foreach ($this->deferred as $data) {
 			$this->sendMessage($data['message'], $data['userIDs'], $data['payload']);
 		}
+	}
+	
+	/**
+	 * Joins the given channel for this request.
+	 *
+	 * @param	string	$name
+	 */
+	public function joinChannel($name) {
+		$this->channels[$name] = $name;
+	}
+	
+	/**
+	 * Returns the list of joined channels.
+	 *
+	 * @return	string[]
+	 */
+	public function getChannels() {
+		return array_values($this->channels);
 	}
 }
