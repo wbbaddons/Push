@@ -20,9 +20,10 @@
 		<requiredpackage minversion="2.4.1">be.bastelstu.core-js</requiredpackage>
 	</requiredpackages>
 	
-	<excludedpackages>
-		<excludedpackage version="3.1.0 Alpha 1">com.woltlab.wcf</excludedpackage>
-	</excludedpackages>
+	<compatibility>
+		<api version="2017" />
+		<api version="2018" />
+	</compatibility>
 	
 	<instructions type="install">
 		<instruction type="file" application="wcf">files_wcf.tar</instruction>
