@@ -5,8 +5,8 @@
 		<packagedescription><![CDATA[Push provides an easy to use push server API.]]></packagedescription>
 		<packagedescription language="de"><![CDATA[Push stellt ein einfach zu verwendendes Push-Server-API zur Verfügung.]]></packagedescription>
 		<isapplication>0</isapplication>
-		<version>2.1.0 Alpha 1</version>
-		<date>2017-09-25</date>
+		<version>2.1.0 RC 1</version>
+		<date>2017-11-08</date>
 		<license><![CDATA[BSD 3-Clause License <http://opensource.org/licenses/BSD-3-Clause>]]></license>
 	</packageinformation>
 	
@@ -16,7 +16,7 @@
 	</authorinformation>
 	
 	<requiredpackages>
-		<requiredpackage minversion="3.0.8">com.woltlab.wcf</requiredpackage>
+		<requiredpackage minversion="3.0.10">com.woltlab.wcf</requiredpackage>
 		<requiredpackage minversion="2.4.1">be.bastelstu.core-js</requiredpackage>
 	</requiredpackages>
 	
