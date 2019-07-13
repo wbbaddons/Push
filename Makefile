@@ -10,7 +10,7 @@ files_wcf.tar: $(WCF_FILES)
 
 files_wcf.out/%.js: files_wcf/%.js
 	-@mkdir -p $$(dirname $@)
-	babel $< > $@
+	yarn run babel $< --out-file $@
 
 files_wcf.out/%: files_wcf/%
 	-@mkdir -p $$(dirname $@)
