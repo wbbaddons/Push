@@ -29,16 +29,16 @@
  */
 
 class Push {
-  onConnect(callback) {
-    return Promise.reject(new Error("Unsupported"));
+  async onConnect(callback) {
+    throw new Error("Unsupported");
   }
 
-  onDisconnect(callback) {
-    return Promise.reject(new Error("Unsupported"));
+  async onDisconnect(callback) {
+    throw new Error("Unsupported");
   }
 
-  onMessage(message, callback) {
-    return Promise.reject(new Error("Unsupported"));
+  async onMessage(message, callback) {
+    throw new Error("Unsupported");
   }
 
   getFeatureFlags() {
