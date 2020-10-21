@@ -7,8 +7,9 @@ be.bastelstu.wcf.push.tar: files_wcf.tar *.xml LICENSE
 	tar cvf be.bastelstu.wcf.push.tar --numeric-owner --exclude-vcs -- files_wcf.tar *.xml LICENSE
 
 files_wcf.tar: $(WCF_FILES) $(TS_FILES)
-	tar cvf files_wcf.tar --numeric-owner --exclude-vcs -- $+
 
+%.tar:
+	tar cvf $@ --numeric-owner --exclude-vcs -C $* -- $(^:$*/%=%)
 
 files_wcf/js/%.js: ts/%.ts
 	yarn run tsc
