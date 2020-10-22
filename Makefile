@@ -3,10 +3,11 @@ TS_FILES = $(shell find ts/ -type f |sed 's/ts$$/js/g;s!^ts/!files_wcf/js/!')
 
 all: be.bastelstu.wcf.push.tar
 
-be.bastelstu.wcf.push.tar: files_wcf.tar *.xml LICENSE
-	tar cvf be.bastelstu.wcf.push.tar --numeric-owner --exclude-vcs -- files_wcf.tar *.xml LICENSE
+be.bastelstu.wcf.push.tar: files_wcf.tar files_update_212.tar *.xml LICENSE
+	tar cvf $@ --numeric-owner --exclude-vcs -- $^
 
 files_wcf.tar: $(WCF_FILES) $(TS_FILES)
+files_update_212.tar: files_update_212/acp/be.bastelstu.wcf.push_2.1.2.php
 
 %.tar:
 	tar cvf $@ --numeric-owner --exclude-vcs -C $* -- $(^:$*/%=%)
