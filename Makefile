@@ -12,11 +12,12 @@ files_update_212.tar: files_update_212/acp/be.bastelstu.wcf.push_2.1.2.php
 %.tar:
 	tar cvf $@ --numeric-owner --exclude-vcs -C $* -- $(^:$*/%=%)
 
-files_wcf/js/%.js: ts/%.ts
+files_wcf/js/%.js: ts/%.ts tsconfig.json
 	yarn run tsc
 
 clean:
 	-find files_wcf/js/ -iname '*.js' -delete
+	-find files_wcf/js/ -iname '*.js.map' -delete
 	-rm -f files_wcf.tar
 	-rm -rf files_wcf.out
 

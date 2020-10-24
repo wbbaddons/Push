@@ -9,12 +9,15 @@
     "rootDir": "ts/",
     "outDir": "files_wcf/js/",
     "lib": [
+      "dom",
       "es2015"
     ],
-    "strictNullChecks": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "noImplicitThis": true,
-    "strictBindCallApply": true
+    "strict": true,
+    "sourceMap": true,
+    "declarationDir": "out.d",
+    "declaration": true
   }
 }

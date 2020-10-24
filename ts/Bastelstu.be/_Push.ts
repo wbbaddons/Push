@@ -29,19 +29,19 @@
  */
 
 class Push {
-  async onConnect(callback) {
+  async onConnect(callback: () => unknown): Promise<void> {
     throw new Error("Unsupported");
   }
 
-  async onDisconnect(callback) {
+  async onDisconnect(callback: () => unknown): Promise<void> {
     throw new Error("Unsupported");
   }
 
-  async onMessage(message, callback) {
+  async onMessage(message: string, callback: (payload: unknown) => unknown): Promise<void> {
     throw new Error("Unsupported");
   }
 
-  getFeatureFlags() {
+  getFeatureFlags(): string[] {
     return [];
   }
 }
