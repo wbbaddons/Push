@@ -19,7 +19,7 @@ clean:
 	-find files_wcf/js/ -iname '*.js' -delete
 	-find files_wcf/js/ -iname '*.js.map' -delete
 	-rm -f files_wcf.tar
-	-rm -rf files_wcf.out
+	-rm -f files_update_212.tar
 
 distclean: clean
 	-rm -f be.bastelstu.wcf.push.tar
