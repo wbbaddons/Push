@@ -5,8 +5,8 @@
 		<packagedescription><![CDATA[Push provides an easy to use push server API.]]></packagedescription>
 		<packagedescription language="de"><![CDATA[Push stellt ein einfach zu verwendendes Push-Server-API zur Verfügung.]]></packagedescription>
 		<isapplication>0</isapplication>
-		<version>2.1.3</version>
-		<date>2020-10-24</date>
+		<version>2.1.4</version>
+		<date>2022-09-16</date>
 		<license><![CDATA[BSD 3-Clause License <http://opensource.org/licenses/BSD-3-Clause>]]></license>
 	</packageinformation>
 	
@@ -28,42 +28,13 @@
 		<instruction type="templateListener" />
 	</instructions>
 
+	<instructions type="update" fromversion="2.1.3">
+		<instruction type="file" application="wcf">files_wcf.tar</instruction>
+		<instruction type="templateListener" />
+	</instructions>
+
 	<instructions type="update" fromversion="2.1.2">
 		<instruction type="file" application="wcf">files_wcf.tar</instruction>
 		<instruction type="templateListener" />
-	</instructions>
-
-	<instructions type="update" fromversion="2.1.1">
-		<instruction type="file" application="wcf">files_wcf.tar</instruction>
-		<instruction type="templateListener" />
-		<instruction type="file" application="wcf">files_update_212.tar</instruction>
-		<instruction type="script">acp/be.bastelstu.wcf.push_2.1.2.php</instruction>
-	</instructions>
-
-	<instructions type="update" fromversion="2.1.0">
-		<instruction type="file" application="wcf">files_wcf.tar</instruction>
-		<instruction type="templateListener" />
-		<instruction type="file" application="wcf">files_update_212.tar</instruction>
-		<instruction type="script">acp/be.bastelstu.wcf.push_2.1.2.php</instruction>
-	</instructions>
-
-	<instructions type="update" fromversion="2.1.0 RC 1">
-		<instruction type="file" application="wcf">files_wcf.tar</instruction>
-		<instruction type="templateListener" />
-	</instructions>
-
-	<instructions type="update" fromversion="2.0.0 RC 1">
-		<instruction type="file" application="wcf">files_wcf.tar</instruction>
-		<instruction type="templateListener" />
-	</instructions>
-
-	<instructions type="update" fromversion="1.1.1">
-		<instruction type="file" application="wcf">files_wcf.tar</instruction>
-		<instruction type="templateListener">templateListener.xml</instruction>
-	</instructions>
-
-	<instructions type="update" fromversion="1.0.0">
-		<instruction type="file" application="wcf">files_wcf.tar</instruction>
-		<instruction type="templateListener">templateListener.xml</instruction>
 	</instructions>
 </package>
