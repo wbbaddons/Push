@@ -2,6 +2,6 @@
   "name": "@wbbaddons/push",
   "version": "2.1.3",
   "devDependencies": {
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.5"
   }
 }
